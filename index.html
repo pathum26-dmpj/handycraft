@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="ja" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-i18n="page_title">CeylonCrafts - スリランカの伝統が生む、世界にひとつの手仕事</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Noto+Serif+JP:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        wabi: {
+                            50: '#fcfbf7',
+                            100: '#f7f4ed',
+                            200: '#ebdcc8',
+                            300: '#dfcaad',
+                            400: '#c5a378',
+                            500: '#a38152',
+                            600: '#83633d',
+                            700: '#684d31',
+                            800: '#4a3825',
+                            900: '#2d2218',
+                        },
+                        sand: '#F5F2EB',
+                        charcoal: '#232323',
+                        bamboo: '#5C6B50',
+                        matcha: '#8A9A7B',
+                        terracotta: '#A65D4C',
+                        gold: '#D4AF37'
+                    },
+                    fontFamily: {
+                        serif: ['"Noto Serif JP"', 'serif'],
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Serif JP', 'Inter', serif;
+            background-color: #FCFBF7;
+            color: #232323;
+        }
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+        .bg-pattern {
+            background-image: radial-gradient(#d5caa5 0.75px, transparent 0.75px);
+            background-size: 16px 16px;
+        }
+        .glass-header {
+            background: rgba(252, 251, 247, 0.95);
+            backdrop-filter: blur(10px);
+        }
+        /* Mobile bottom navigation spacing offset */
+        body {
+            padding-bottom: 4rem;
+        }
+        @media (min-width: 1024px) {
+            body {
+                padding-bottom: 0;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased text-charcoal bg-wabi-50 selection:bg-wabi-300 selection:text-wabi-900">
+
+    <!-- 1. Top Announcement Bar -->
+    <div class="bg-wabi-900 text-wabi-100 text-xs py-2 px-4 text-center tracking-wider flex justify-between items-center transition-all duration-300">
+        <div class="container mx-auto flex justify-between items-center">
+            <span class="w-full sm:w-auto text-center" data-i18n="announcement">
+                ✨ 全国送料無料キャンペーン実施中（¥10,000以上のお買い上げ） | 表示価格はすべて消費税込
+            </span>
+            <div class="hidden sm:flex items-center space-x-4 text-xs text-wabi-300">
+                <span><i class="fa-solid fa-truck-fast mr-1"></i> <span data-i18n="shipping_courier">ヤマト運輸 / 佐川急便にてお届け</span></span>
+                <!-- Language Toggle Switch -->
+                <div class="flex items-center space-x-1 bg-wabi-800 px-2 py-0.5 rounded-full border border-wabi-700">
+                    <button onclick="setLanguage('ja')" id="lang-ja-btn" class="px-2 py-0.5 rounded-full text-[10px] font-bold transition bg-wabi-200 text-wabi-900">日本語</button>
+                    <button onclick="setLanguage('en')" id="lang-en-btn" class="px-2 py-0.5 rounded-full text-[10px] font-medium transition text-wabi-300 hover:text-white">English</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. Header Navigation -->
+    <header class="sticky top-0 z-40 glass-header border-b border-wabi-200 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Mobile Menu Toggle Button -->
+                <button id="mobile-menu-btn" class="lg:hidden text-charcoal hover:text-wabi-500 focus:outline-none p-2" aria-label="Menu">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center space-x-3 group">
+                    <div class="w-10 h-10 rounded-full bg-wabi-800 text-wabi-100 flex items-center justify-center text-xl font-serif font-bold group-hover:bg-wabi-600 transition">
+                        CC
+                    </div>
+                    <div class="flex flex-col">
+                        <span class="font-serif text-lg sm:text-2xl font-bold tracking-widest text-wabi-900" data-i18n="brand_title">セイロン工芸</span>
+                        <span class="text-[9px] sm:text-[10px] tracking-widest text-wabi-600 uppercase font-sans">Ceylon Handicrafts Japan</span>
+                    </div>
+                </a>
+
+                <!-- Desktop Navigation Menu -->
+                <nav class="hidden lg:flex items-center space-x-8 text-sm font-medium tracking-wider">
+                    <a href="#hero" class="text-wabi-900 hover:text-wabi-500 transition py-1 border-b-2 border-transparent hover:border-wabi-500" data-i18n="nav_home">ホーム</a>
+                    <a href="#story" class="text-wabi-900 hover:text-wabi-500 transition py-1 border-b-2 border-transparent hover:border-wabi-500" data-i18n="nav_story">職人の技と心</a>
+                    <a href="#catalog" class="text-wabi-900 hover:text-wabi-500 transition py-1 border-b-2 border-transparent hover:border-wabi-500" data-i18n="nav_catalog">作品一覧</a>
+                    <a href="#wrapping" class="text-wabi-900 hover:text-wabi-500 transition py-1 border-b-2 border-transparent hover:border-wabi-500" data-i18n="nav_wrapping">ギフト包装</a>
+                    <a href="#reviews" class="text-wabi-900 hover:text-wabi-500 transition py-1 border-b-2 border-transparent hover:border-wabi-500" data-i18n="nav_reviews">お客様の声</a>
+                </nav>
+
+                <!-- Right Header Actions (Search, Wishlist, Cart, Lang Toggle for Mobile) -->
+                <div class="flex items-center space-x-2 sm:space-x-5">
+                    <!-- Mobile Language Toggle -->
+                    <div class="lg:hidden flex items-center bg-wabi-200/80 px-2 py-1 rounded-full text-xs">
+                        <button onclick="setLanguage('ja')" class="lang-mob-ja font-bold px-1 text-wabi-900">JP</button>
+                        <span class="text-wabi-400">/</span>
+                        <button onclick="setLanguage('en')" class="lang-mob-en font-medium px-1 text-wabi-600">EN</button>
+                    </div>
+
+                    <!-- Live Search Toggle -->
+                    <button id="search-toggle-btn" class="p-2 text-charcoal hover:text-wabi-600 transition" title="Search">
+                        <i class="fa-solid fa-magnifying-glass text-lg"></i>
+                    </button>
+
+                    <!-- Wishlist Counter Button -->
+                    <button id="wishlist-btn" class="p-2 text-charcoal hover:text-wabi-600 transition relative" title="Wishlist">
+                        <i class="fa-regular fa-heart text-lg"></i>
+                        <span id="wishlist-badge" class="absolute top-1 right-1 bg-terracotta text-white text-[10px] font-bold rounded-full w-4 h-4 flex items-center justify-center hidden">0</span>
+                    </button>
+
+                    <!-- Cart Trigger Button -->
+                    <button id="cart-drawer-btn" class="flex items-center space-x-1.5 bg-wabi-800 text-wabi-50 hover:bg-wabi-700 px-3.5 py-2 rounded-full transition shadow-sm hover:shadow">
+                        <i class="fa-solid fa-bag-shopping text-xs"></i>
+                        <span class="text-xs tracking-wider font-medium hidden sm:inline" data-i18n="cart_btn">カート</span>
+                        <span id="cart-count-badge" class="bg-wabi-200 text-wabi-900 text-[10px] font-bold px-1.5 py-0.2 rounded-full">0</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Search Overlay Input Panel -->
+        <div id="search-bar-panel" class="hidden border-t border-wabi-200 bg-sand px-4 py-3 shadow-inner">
+            <div class="container mx-auto max-w-2xl flex items-center bg-white rounded-full px-4 py-2 border border-wabi-300">
+                <i class="fa-solid fa-magnifying-glass text-wabi-400 mr-3"></i>
+                <input type="text" id="catalog-search-input" data-i18n-placeholder="search_placeholder" placeholder="木工品、紅茶器、バティック織物などを検索..." class="w-full bg-transparent focus:outline-none text-sm font-sans">
+                <button id="clear-search-btn" class="text-wabi-400 hover:text-wabi-700 text-xs ml-2" data-i18n="clear">クリア</button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Slideout -->
+        <div id="mobile-menu" class="hidden lg:hidden border-t border-wabi-200 bg-wabi-50 px-6 py-6 space-y-4 shadow-xl">
+            <a href="#hero" class="mobile-menu-link block text-wabi-900 font-medium py-2 border-b border-wabi-100" data-i18n="nav_home">ホーム</a>
+            <a href="#story" class="mobile-menu-link block text-wabi-900 font-medium py-2 border-b border-wabi-100" data-i18n="nav_story">職人の技と心</a>
+            <a href="#catalog" class="mobile-menu-link block text-wabi-900 font-medium py-2 border-b border-wabi-100" data-i18n="nav_catalog">作品一覧</a>
+            <a href="#wrapping" class="mobile-menu-link block text-wabi-900 font-medium py-2 border-b border-wabi-100" data-i18n="nav_wrapping">ギフト包装</a>
+            <a href="#reviews" class="mobile-menu-link block text-wabi-900 font-medium py-2" data-i18n="nav_reviews">お客様の声</a>
+        </div>
+    </header>
+
+    <!-- 3. Hero Section -->
+    <section id="hero" class="relative bg-wabi-100 overflow-hidden py-14 lg:py-24 border-b border-wabi-200">
+        <div class="absolute inset-0 bg-pattern opacity-40"></div>
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                
+                <!-- Left Hero Text Content -->
+                <div class="lg:col-span-6 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center space-x-2 bg-wabi-200/80 px-3.5 py-1.5 rounded-full text-xs text-wabi-800 tracking-widest uppercase">
+                        <span class="w-2 h-2 rounded-full bg-bamboo"></span>
+                        <span data-i18n="hero_tag">スリランカ×日本の美意識</span>
+                    </div>
+
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-bold text-wabi-900 leading-tight tracking-tight" data-i18n="hero_title">
+                        スリランカの伝統が生む、<br>
+                        <span class="text-wabi-600 italic font-normal" data-i18n="hero_title_sub">世界にひとつの</span>手仕事。
+                    </h1>
+
+                    <p class="text-wabi-800 text-sm sm:text-base leading-relaxed max-w-xl mx-auto lg:mx-0" data-i18n="hero_desc">
+                        幾世代にもわたり受け継がれた職人の技と自然素材が紡ぐ伝統工芸。熱帯の温もりと洗練された造形美を、日本の丁寧な暮らしにお届けします。
+                    </p>
+
+                    <div class="pt-2 flex flex-col sm:flex-row items-center justify-center lg:justify-start space-y-3 sm:space-y-0 sm:space-x-4">
+                        <a href="#catalog" class="w-full sm:w-auto inline-flex items-center justify-center bg-wabi-900 text-wabi-50 hover:bg-wabi-800 px-8 py-4 rounded-full font-medium text-sm transition tracking-wider shadow-md hover:shadow-lg">
+                            <span data-i18n="hero_cta_explore">作品を鑑賞・購入する</span>
+                            <i class="fa-solid fa-arrow-right-long ml-3"></i>
+                        </a>
+                        <a href="#story" class="w-full sm:w-auto inline-flex items-center justify-center bg-transparent border border-wabi-800 text-wabi-900 hover:bg-wabi-200/50 px-6 py-4 rounded-full font-medium text-sm transition tracking-wider">
+                            <span data-i18n="hero_cta_story">工房のストーリー</span>
+                        </a>
+                    </div>
+
+                    <!-- Trust indicators -->
+                    <div class="pt-6 border-t border-wabi-200/80 grid grid-cols-3 gap-4 text-center lg:text-left">
+                        <div>
+                            <div class="text-lg sm:text-xl font-bold font-serif text-wabi-900">100%</div>
+                            <div class="text-[11px] sm:text-xs text-wabi-600" data-i18n="trust_1">天然・手作り</div>
+                        </div>
+                        <div>
+                            <div class="text-lg sm:text-xl font-bold font-serif text-wabi-900" data-i18n="trust_2_title">フェアトレード</div>
+                            <div class="text-[11px] sm:text-xs text-wabi-600" data-i18n="trust_2">職人直接支援</div>
+                        </div>
+                        <div>
+                            <div class="text-lg sm:text-xl font-bold font-serif text-wabi-900" data-i18n="trust_3_title">厳重梱包</div>
+                            <div class="text-[11px] sm:text-xs text-wabi-600" data-i18n="trust_3">日本全国配送</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Hero Image Grid Showcase -->
+                <div class="lg:col-span-6 relative">
+                    <div class="relative mx-auto max-w-lg lg:max-w-none">
+                        <div class="aspect-4/3 sm:aspect-16/10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-wabi-200 relative">
+                            <img src="https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=1000&q=80" alt="Handcrafted Ceylon Pottery" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 text-white">
+                                <span class="bg-wabi-900/80 text-wabi-100 text-[10px] uppercase px-2.5 py-1 rounded tracking-widest font-sans" data-i18n="badge_oneoff">1点もの工芸</span>
+                                <p class="text-base sm:text-lg font-serif font-medium mt-1" data-i18n="hero_img_caption">手彫り木工と伝統陶器</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. Artisan Story -->
+    <section id="story" class="py-16 sm:py-20 bg-wabi-50 relative">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-3xl mx-auto text-center space-y-4 mb-16">
+                <span class="text-xs font-sans tracking-widest uppercase text-wabi-600 font-bold" data-i18n="story_subtitle">— 職人の技と心 —</span>
+                <h2 class="text-2xl sm:text-4xl font-serif font-bold text-wabi-900" data-i18n="story_title">自然の恵みと、数百年の受け継がれた意匠</h2>
+                <div class="w-16 h-0.5 bg-wabi-400 mx-auto mt-2"></div>
+                <p class="text-wabi-700 text-xs sm:text-base leading-relaxed pt-2" data-i18n="story_desc">
+                    セイロン（スリランカ）の深い緑と太陽のもとで育まれた天然素材。代々受け継がれてきた匠の技で、ひとつひとつ心を込めて手作業で仕立てられています。
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-white p-8 rounded-2xl border border-wabi-200 shadow-sm hover:shadow-md transition text-center space-y-4">
+                    <div class="w-16 h-16 bg-wabi-100 rounded-full flex items-center justify-center mx-auto text-wabi-700 text-2xl">
+                        <i class="fa-solid fa-tree"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-wabi-900" data-i18n="feat_1_title">持続可能な天然素材</h3>
+                    <p class="text-xs sm:text-sm text-wabi-700 leading-relaxed" data-i18n="feat_1_desc">
+                        高級チーク材、マホガニー、ヤシの木、天然真鍮、手紡ぎコットンなど、環境に配慮して採取された極上の素材のみを使用しています。
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-wabi-200 shadow-sm hover:shadow-md transition text-center space-y-4">
+                    <div class="w-16 h-16 bg-wabi-100 rounded-full flex items-center justify-center mx-auto text-wabi-700 text-2xl">
+                        <i class="fa-solid fa-hands-holding-child"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-wabi-900" data-i18n="feat_2_title">フェアトレードと共生</h3>
+                    <p class="text-xs sm:text-sm text-wabi-700 leading-relaxed" data-i18n="feat_2_desc">
+                        スリランカの農村部で活躍する伝統工芸師や女性職人グループと直接提携。適切な対価を支払うことで、伝統の継承と生活向上を支えています。
+                    </p>
+                </div>
+
+                <div class="bg-white p-8 rounded-2xl border border-wabi-200 shadow-sm hover:shadow-md transition text-center space-y-4">
+                    <div class="w-16 h-16 bg-wabi-100 rounded-full flex items-center justify-center mx-auto text-wabi-700 text-2xl">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="text-xl font-serif font-bold text-wabi-900" data-i18n="feat_3_title">唯一無二の存在感</h3>
+                    <p class="text-xs sm:text-sm text-wabi-700 leading-relaxed" data-i18n="feat_3_desc">
+                        型押し大量生産にはない、手仕事ならではの温もりと微妙な表情の違い。暮らしの中に一つ置くだけで静かな美しさを添えます。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. Product Catalog Section (Mobile 2-column grid optimized) -->
+    <section id="catalog" class="py-16 sm:py-20 bg-sand/60 border-t border-b border-wabi-200">
+        <div class="container mx-auto px-3 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+                <div>
+                    <span class="text-xs font-sans tracking-widest uppercase text-wabi-600 font-bold" data-i18n="catalog_subtitle">— 厳選コレクション —</span>
+                    <h2 class="text-2xl sm:text-3xl font-serif font-bold text-wabi-900 mt-1" data-i18n="catalog_title">手仕事作品カタログ</h2>
+                </div>
+                <p class="text-xs sm:text-sm text-wabi-600 mt-2 md:mt-0 font-sans">
+                    <span data-i18n="catalog_total">全</span> <span id="product-count" class="font-bold text-wabi-900">8</span> <span data-i18n="catalog_items_suffix">件の伝統工芸品を表示中</span>
+                </p>
+            </div>
+
+            <!-- Filter Control Bar -->
+            <div class="bg-white p-3 sm:p-6 rounded-2xl border border-wabi-200 shadow-sm mb-8 space-y-4">
+                <!-- Category Buttons -->
+                <div class="flex items-center space-x-2 overflow-x-auto hide-scrollbar pb-2 sm:pb-0">
+                    <button class="category-btn active bg-wabi-900 text-white px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium whitespace-nowrap transition" data-category="all" data-i18n="cat_all">
+                        すべて表示
+                    </button>
+                    <button class="category-btn bg-wabi-100 text-wabi-800 hover:bg-wabi-200 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium whitespace-nowrap transition" data-category="wood" data-i18n="cat_wood">
+                        木工芸品 (Wood)
+                    </button>
+                    <button class="category-btn bg-wabi-100 text-wabi-800 hover:bg-wabi-200 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium whitespace-nowrap transition" data-category="textile" data-i18n="cat_textile">
+                        バティック・テキスタイル
+                    </button>
+                    <button class="category-btn bg-wabi-100 text-wabi-800 hover:bg-wabi-200 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium whitespace-nowrap transition" data-category="brass" data-i18n="cat_brass">
+                        真鍮・金属細工
+                    </button>
+                    <button class="category-btn bg-wabi-100 text-wabi-800 hover:bg-wabi-200 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium whitespace-nowrap transition" data-category="pottery" data-i18n="cat_pottery">
+                        陶器・セイロン茶器
+                    </button>
+                    <button class="category-btn bg-wabi-100 text-wabi-800 hover:bg-wabi-200 px-3.5 py-1.5 sm:px-4 sm:py-2 rounded-full text-xs font-medium whitespace-nowrap transition" data-category="eco" data-i18n="cat_eco">
+                        エコクラフト
+                    </button>
+                </div>
+
+                <!-- Price & Sort Row -->
+                <div class="pt-3 border-t border-wabi-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs font-sans">
+                    <div class="flex items-center space-x-2">
+                        <span class="text-wabi-700 font-medium" data-i18n="filter_price">価格帯:</span>
+                        <select id="price-filter" class="bg-wabi-50 border border-wabi-300 rounded-lg px-2.5 py-1.5 focus:outline-none text-wabi-800">
+                            <option value="all" data-i18n="price_all">すべての価格</option>
+                            <option value="under5000" data-i18n="price_under">¥5,000 未満</option>
+                            <option value="5000to15000">¥5,000 〜 ¥15,000</option>
+                            <option value="over15000" data-i18n="price_over">¥15,000 以上</option>
+                        </select>
+                    </div>
+
+                    <div class="flex items-center space-x-2">
+                        <span class="text-wabi-700 font-medium" data-i18n="filter_sort">並び替え:</span>
+                        <select id="sort-select" class="bg-wabi-50 border border-wabi-300 rounded-lg px-2.5 py-1.5 focus:outline-none text-wabi-800">
+                            <option value="popular" data-i18n="sort_pop">人気順</option>
+                            <option value="price-low" data-i18n="sort_low">価格の安い順</option>
+                            <option value="price-high" data-i18n="sort_high">価格の高い順</option>
+                            <option value="newest" data-i18n="sort_new">新作順</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Dynamic Grid: 2 columns on mobile, 4 columns on desktop -->
+            <div id="products-grid" class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 lg:gap-8">
+                <!-- Rendered dynamically by JavaScript -->
+            </div>
+
+            <!-- Empty State -->
+            <div id="no-products-msg" class="hidden text-center py-16 bg-white rounded-2xl border border-wabi-200">
+                <i class="fa-solid fa-box-open text-4xl text-wabi-400 mb-3"></i>
+                <p class="text-wabi-800 font-medium" data-i18n="no_products">条件に一致する作品が見つかりませんでした。</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 6. Japanese Style Gift Wrapping Feature -->
+    <section id="wrapping" class="py-16 sm:py-20 bg-wabi-900 text-wabi-100 relative overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-6 space-y-6">
+                    <span class="text-xs font-sans tracking-widest uppercase text-wabi-300 font-bold" data-i18n="wrap_subtitle">— 心を伝えるお包み ―</span>
+                    <h2 class="text-2xl sm:text-4xl font-serif font-bold text-white leading-snug" data-i18n="wrap_title">
+                        大切な方への贈り物に。<br>風呂敷＆伝統桐箱ラッピング
+                    </h2>
+                    <p class="text-wabi-200 text-xs sm:text-sm leading-relaxed" data-i18n="wrap_desc">
+                        セイロン工芸では、スリランカ手織りバティックを用いた風呂敷包みや、美しい贈答箱ラッピング（有料オプション +¥500）をご用意しております。記念日や長寿のお祝い、新築祝いに最適です。
+                    </p>
+                    <ul class="space-y-2.5 text-xs sm:text-sm text-wabi-300">
+                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-wabi-400 mr-2.5"></i> <span data-i18n="wrap_li_1">スリランカ手織り布によるオリジナル風呂敷包み</span></li>
+                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-wabi-400 mr-2.5"></i> <span data-i18n="wrap_li_2">手書き風の和紙メッセージカード同封可能</span></li>
+                        <li class="flex items-center"><i class="fa-solid fa-circle-check text-wabi-400 mr-2.5"></i> <span data-i18n="wrap_li_3">金額の分かる納品書は同梱いたしません</span></li>
+                    </ul>
+                </div>
+                <div class="lg:col-span-6">
+                    <div class="relative rounded-2xl overflow-hidden shadow-2xl border border-wabi-700">
+                        <img src="https://images.unsplash.com/photo-1549465220-1a8b9238cd48?auto=format&fit=crop&w=800&q=80" alt="Japanese Style Gift Wrapping" class="w-full h-72 sm:h-80 object-cover">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. Customer Reviews -->
+    <section id="reviews" class="py-16 sm:py-20 bg-wabi-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16">
+                <span class="text-xs font-sans tracking-widest uppercase text-wabi-600 font-bold" data-i18n="reviews_subtitle">— お客様の声 ―</span>
+                <h2 class="text-2xl sm:text-3xl font-serif font-bold text-wabi-900 mt-2" data-i18n="reviews_title">ご愛用者様からのメッセージ</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="bg-white p-6 rounded-2xl border border-wabi-200 shadow-sm space-y-4">
+                    <div class="flex text-amber-500 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-wabi-800 leading-relaxed italic" data-i18n="rev_1_text">
+                        「象の手彫り木工像を購入しました。リビングに飾っていますが、チーク材の優しい木目と存在感に毎日癒やされています。梱包もとても丁寧でした。」
+                    </p>
+                    <div class="pt-4 border-t border-wabi-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-wabi-900" data-i18n="rev_1_author">佐藤 様（東京都）</p>
+                            <p class="text-[10px] text-wabi-500" data-i18n="rev_1_item">購入商品: 象の伝統木彫り像</p>
+                        </div>
+                        <span class="bg-matcha/10 text-matcha text-[10px] px-2 py-0.5 rounded font-bold" data-i18n="verified">購入者様</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-wabi-200 shadow-sm space-y-4">
+                    <div class="flex text-amber-500 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-wabi-800 leading-relaxed italic" data-i18n="rev_2_text">
+                        「セイロン茶器のセットを新築祝いとして友人に贈りました。手作業の素朴な味わいと深い青色が本当に素晴らしく、大変喜ばれました。」
+                    </p>
+                    <div class="pt-4 border-t border-wabi-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-wabi-900" data-i18n="rev_2_author">高橋 様（京都府）</p>
+                            <p class="text-[10px] text-wabi-500" data-i18n="rev_2_item">購入商品: ハンドメイド陶器ポット</p>
+                        </div>
+                        <span class="bg-matcha/10 text-matcha text-[10px] px-2 py-0.5 rounded font-bold" data-i18n="verified">購入者様</span>
+                    </div>
+                </div>
+
+                <div class="bg-white p-6 rounded-2xl border border-wabi-200 shadow-sm space-y-4">
+                    <div class="flex text-amber-500 text-xs">
+                        <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                    </div>
+                    <p class="text-xs sm:text-sm text-wabi-800 leading-relaxed italic" data-i18n="rev_3_text">
+                        「バティック織物のタペストリーを購入。部屋の雰囲気がガラリとアジアンモダンになり気に入っています。質感も手触りも高級感があります。」
+                    </p>
+                    <div class="pt-4 border-t border-wabi-100 flex items-center justify-between">
+                        <div>
+                            <p class="text-xs font-bold text-wabi-900" data-i18n="rev_3_author">渡辺 様（神奈川県）</p>
+                            <p class="text-[10px] text-wabi-500" data-i18n="rev_3_item">購入商品: 手織りバティックタペストリー</p>
+                        </div>
+                        <span class="bg-matcha/10 text-matcha text-[10px] px-2 py-0.5 rounded font-bold" data-i18n="verified">購入者様</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 8. Footer -->
+    <footer class="bg-wabi-900 text-wabi-200 pt-16 pb-16 lg:pb-12 border-t border-wabi-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="bg-wabi-800/80 p-6 sm:p-12 rounded-3xl mb-16 border border-wabi-700 text-center max-w-4xl mx-auto">
+                <span class="text-xs font-sans tracking-widest text-wabi-400 uppercase font-bold" data-i18n="news_subtitle">メルマガご登録</span>
+                <h3 class="text-xl sm:text-3xl font-serif text-white font-bold mt-2" data-i18n="news_title">10% OFF クーポンをお届け</h3>
+                <p class="text-xs sm:text-sm text-wabi-300 mt-2 max-w-lg mx-auto" data-i18n="news_desc">
+                    新作手仕事作品の入荷情報や、職人インタビュー、会員限定優待クーポンを定期的にお届けします。
+                </p>
+                <form id="newsletter-form" class="mt-6 flex flex-col sm:flex-row items-center justify-center max-w-md mx-auto gap-3">
+                    <input type="email" data-i18n-placeholder="email_placeholder" placeholder="メールアドレスを入力" required class="w-full px-4 py-3 rounded-full bg-wabi-900 border border-wabi-600 text-white placeholder-wabi-500 text-sm focus:outline-none focus:border-wabi-300">
+                    <button type="submit" class="w-full sm:w-auto bg-wabi-300 hover:bg-wabi-200 text-wabi-900 font-bold px-8 py-3 rounded-full text-sm transition whitespace-nowrap" data-i18n="news_btn">
+                        登録する
+                    </button>
+                </form>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-wabi-800 text-xs">
+                <div class="lg:col-span-2 space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-8 h-8 rounded-full bg-wabi-100 text-wabi-900 flex items-center justify-center font-serif font-bold text-lg">
+                            CC
+                        </div>
+                        <span class="font-serif text-xl font-bold text-white tracking-widest" data-i18n="brand_title">セイロン工芸</span>
+                    </div>
+                    <p class="text-wabi-400 leading-relaxed pr-6" data-i18n="footer_bio">
+                        スリランカの伝統技術と日本の生活空間をつなぐ手仕事セレクトショップ。職人の想いとぬくもりを直接お届けします。
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold font-serif text-white uppercase tracking-wider" data-i18n="footer_shop">ショップ</h4>
+                    <ul class="space-y-2 text-wabi-400">
+                        <li><a href="#catalog" class="hover:text-white transition" data-i18n="cat_wood">木工芸品</a></li>
+                        <li><a href="#catalog" class="hover:text-white transition" data-i18n="cat_textile">バティック布</a></li>
+                        <li><a href="#catalog" class="hover:text-white transition" data-i18n="cat_brass">真鍮細工</a></li>
+                        <li><a href="#catalog" class="hover:text-white transition" data-i18n="cat_pottery">陶器・茶器</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold font-serif text-white uppercase tracking-wider" data-i18n="footer_support">サポート</h4>
+                    <ul class="space-y-2 text-wabi-400">
+                        <li><a href="#" class="hover:text-white transition" data-i18n="sup_pay">お支払い方法</a></li>
+                        <li><a href="#" class="hover:text-white transition" data-i18n="sup_ship">配送・送料について</a></li>
+                        <li><a href="#" class="hover:text-white transition" data-i18n="sup_faq">よくある質問 (FAQ)</a></li>
+                    </ul>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-sm font-bold font-serif text-white uppercase tracking-wider" data-i18n="footer_delivery">配送サポート</h4>
+                    <p class="text-wabi-400 leading-relaxed" data-i18n="footer_delivery_desc">
+                        ヤマト運輸・佐川急便にてお届け。<br>
+                        日時指定対応。
+                    </p>
+                    <div class="pt-2 text-wabi-300">
+                        <p><i class="fa-solid fa-phone mr-1"></i> 03-1234-5678</p>
+                        <p><i class="fa-solid fa-envelope mr-1"></i> support@ceyloncrafts.jp</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-wabi-500">
+                <p>&copy; 2026 CeylonCrafts Japan. All rights reserved.</p>
+                <div class="flex space-x-4 mt-4 sm:mt-0">
+                    <span data-i18n="privacy">プライバシーポリシー</span>
+                    <span data-i18n="terms">利用規約</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- 9. Mobile Bottom Navigation Bar -->
+    <nav class="lg:hidden fixed bottom-0 left-0 right-0 bg-white border-t border-wabi-200 shadow-2xl z-40 px-4 py-2 flex justify-around items-center">
+        <a href="#hero" class="flex flex-col items-center text-wabi-800 hover:text-wabi-500 py-1 px-3">
+            <i class="fa-solid fa-house text-base"></i>
+            <span class="text-[10px] mt-0.5 font-medium" data-i18n="mob_home">ホーム</span>
+        </a>
+        <button onclick="document.getElementById('search-toggle-btn').click()" class="flex flex-col items-center text-wabi-800 hover:text-wabi-500 py-1 px-3">
+            <i class="fa-solid fa-magnifying-glass text-base"></i>
+            <span class="text-[10px] mt-0.5 font-medium" data-i18n="mob_search">検索</span>
+        </button>
+        <button onclick="document.getElementById('wishlist-btn').click()" class="flex flex-col items-center text-wabi-800 hover:text-wabi-500 py-1 px-3 relative">
+            <i class="fa-regular fa-heart text-base"></i>
+            <span class="text-[10px] mt-0.5 font-medium" data-i18n="mob_wish">お気に入り</span>
+        </button>
+        <button onclick="document.getElementById('cart-drawer-btn').click()" class="flex flex-col items-center text-wabi-800 hover:text-wabi-500 py-1 px-3 relative">
+            <i class="fa-solid fa-bag-shopping text-base"></i>
+            <span class="absolute top-0 right-2 bg-wabi-900 text-white text-[9px] font-bold px-1.5 rounded-full mobile-cart-count">0</span>
+            <span class="text-[10px] mt-0.5 font-medium" data-i18n="mob_cart">カート</span>
+        </button>
+        <button onclick="document.getElementById('mobile-menu-btn').click()" class="flex flex-col items-center text-wabi-800 hover:text-wabi-500 py-1 px-3">
+            <i class="fa-solid fa-bars text-base"></i>
+            <span class="text-[10px] mt-0.5 font-medium" data-i18n="mob_menu">メニュー</span>
+        </button>
+    </nav>
+
+    <!-- Slide-in Shopping Cart Drawer -->
+    <div id="cart-drawer-overlay" class="fixed inset-0 bg-black/60 z-50 hidden transition-opacity duration-300"></div>
+    <aside id="cart-drawer" class="fixed top-0 right-0 h-full w-full sm:w-[420px] bg-white z-50 shadow-2xl transform translate-x-full transition-transform duration-300 flex flex-col">
+        <div class="p-5 bg-wabi-50 border-b border-wabi-200 flex items-center justify-between">
+            <div class="flex items-center space-x-2">
+                <i class="fa-solid fa-bag-shopping text-wabi-800"></i>
+                <h3 class="font-serif font-bold text-lg text-wabi-900" data-i18n="cart_title">ショッピングカート</h3>
+            </div>
+            <button id="close-cart-btn" class="p-2 text-wabi-600 hover:text-wabi-900">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+        </div>
+
+        <div class="bg-wabi-100 p-3 px-5 border-b border-wabi-200 text-xs">
+            <div class="flex justify-between text-wabi-800 font-medium mb-1">
+                <span id="shipping-progress-text">送料無料まであと ¥10,000</span>
+                <span id="shipping-percent">0%</span>
+            </div>
+            <div class="w-full bg-wabi-200 h-2 rounded-full overflow-hidden">
+                <div id="shipping-progress-bar" class="bg-bamboo h-full w-0 transition-all duration-300"></div>
+            </div>
+        </div>
+
+        <div id="cart-items-container" class="flex-1 overflow-y-auto p-5 space-y-4 divide-y divide-wabi-100">
+            <!-- Items injected here -->
+        </div>
+
+        <div class="p-5 border-t border-wabi-200 bg-wabi-50 space-y-4">
+            <div class="space-y-1.5 text-xs text-wabi-700">
+                <div class="flex justify-between">
+                    <span data-i18n="subtotal">小計 (税込):</span>
+                    <span id="cart-subtotal" class="font-bold text-sm text-wabi-900">¥0</span>
+                </div>
+                <div class="flex justify-between">
+                    <span data-i18n="shipping_fee">送料 (日本国内):</span>
+                    <span id="cart-shipping-fee" class="text-wabi-800">¥800</span>
+                </div>
+            </div>
+
+            <button id="checkout-open-btn" class="w-full bg-wabi-900 hover:bg-wabi-800 text-white font-bold py-3.5 rounded-full text-sm transition shadow-md flex items-center justify-center space-x-2">
+                <span data-i18n="proceed_checkout">ご注文手続きへ進む</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </button>
+        </div>
+    </aside>
+
+    <!-- Quick View Modal -->
+    <div id="quickview-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-3xl max-w-3xl w-full overflow-hidden shadow-2xl relative border border-wabi-200 my-8">
+            <button id="close-quickview-btn" class="absolute top-4 right-4 z-10 w-10 h-10 bg-white/80 rounded-full flex items-center justify-center text-wabi-800 hover:bg-white transition shadow">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div id="quickview-content" class="grid grid-cols-1 md:grid-cols-2">
+                <!-- Dynamically filled -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/60 z-50 hidden flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 my-8 shadow-2xl relative border border-wabi-200">
+            <button id="close-checkout-btn" class="absolute top-4 right-4 text-wabi-600 hover:text-wabi-900">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <h3 class="text-2xl font-serif font-bold text-wabi-900 mb-4 border-b border-wabi-200 pb-3" data-i18n="checkout_title">ご注文手続き (デモ)</h3>
+
+            <form id="checkout-form" class="space-y-4 text-xs font-sans">
+                <div class="space-y-1">
+                    <label class="font-bold text-wabi-800" data-i18n="chk_name">お名前 *</label>
+                    <input type="text" placeholder="山田 太郎" required class="w-full px-3 py-2 border border-wabi-300 rounded-lg focus:outline-none focus:border-wabi-600">
+                </div>
+
+                <div class="grid grid-cols-2 gap-3">
+                    <div class="space-y-1">
+                        <label class="font-bold text-wabi-800" data-i18n="chk_zip">郵便番号 *</label>
+                        <input type="text" placeholder="100-0001" required class="w-full px-3 py-2 border border-wabi-300 rounded-lg focus:outline-none focus:border-wabi-600">
+                    </div>
+                    <div class="space-y-1">
+                        <label class="font-bold text-wabi-800" data-i18n="chk_pref">都道府県 *</label>
+                        <select required class="w-full px-3 py-2 border border-wabi-300 rounded-lg focus:outline-none focus:border-wabi-600">
+                            <option value="">選択</option>
+                            <option value="tokyo">東京都 / Tokyo</option>
+                            <option value="osaka">大阪府 / Osaka</option>
+                            <option value="kyoto">京都府 / Kyoto</option>
+                            <option value="kanagawa">神奈川県 / Kanagawa</option>
+                            <option value="other">その他 / Other</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="space-y-1">
+                    <label class="font-bold text-wabi-800" data-i18n="chk_address">住所 *</label>
+                    <input type="text" placeholder="千代田区1-1-1 セイロンビル 2F" required class="w-full px-3 py-2 border border-wabi-300 rounded-lg focus:outline-none focus:border-wabi-600">
+                </div>
+
+                <div class="space-y-1">
+                    <label class="font-bold text-wabi-800" data-i18n="chk_payment">お支払い方法 *</label>
+                    <div class="grid grid-cols-3 gap-2 pt-1">
+                        <label class="border border-wabi-300 p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-wabi-50">
+                            <input type="radio" name="payment" value="card" checked class="mb-1">
+                            <span data-i18n="pay_card">クレジット</span>
+                        </label>
+                        <label class="border border-wabi-300 p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-wabi-50">
+                            <input type="radio" name="payment" value="paypay" class="mb-1">
+                            <span>PayPay</span>
+                        </label>
+                        <label class="border border-wabi-300 p-2.5 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:bg-wabi-50">
+                            <input type="radio" name="payment" value="convenience" class="mb-1">
+                            <span data-i18n="pay_konbini">コンビニ決済</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="pt-4 border-t border-wabi-200">
+                    <div class="flex justify-between text-sm font-bold text-wabi-900 mb-4">
+                        <span data-i18n="chk_total">合計金額 (税込):</span>
+                        <span id="checkout-total-price">¥0</span>
+                    </div>
+                    <button type="submit" class="w-full bg-wabi-900 text-white font-bold py-3.5 rounded-full text-sm hover:bg-wabi-800 transition shadow" data-i18n="chk_submit">
+                        注文を確定する (デモ完了)
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Bilingual Translations Dictionary
+        const translations = {
+            ja: {
+                page_title: "CeylonCrafts - スリランカの伝統が生む、世界にひとつの手仕事",
+                announcement: "✨ 全国送料無料キャンペーン実施中（¥10,000以上のお買い上げ） | 表示価格はすべて消費税込",
+                shipping_courier: "ヤマト運輸 / 佐川急便にてお届け",
+                brand_title: "セイロン工芸",
+                nav_home: "ホーム",
+                nav_story: "職人の技と心",
+                nav_catalog: "作品一覧",
+                nav_wrapping: "ギフト包装",
+                nav_reviews: "お客様の声",
+                cart_btn: "カート",
+                search_placeholder: "木工品、紅茶器、バティック織物などを検索...",
+                clear: "クリア",
+                hero_tag: "スリランカ×日本の美意識",
+                hero_title: "スリランカの伝統が生む、<br><span class=\"text-wabi-600 italic font-normal\">世界にひとつの</span>手仕事。",
+                hero_desc: "幾世代にもわたり受け継がれた職人の技と自然素材が紡ぐ伝統工芸。熱帯の温もりと洗練された造形美を、日本の丁寧な暮らしにお届けします。",
+                hero_cta_explore: "作品を鑑賞・購入する",
+                hero_cta_story: "工房のストーリー",
+                trust_1: "天然・手作り",
+                trust_2_title: "フェアトレード",
+                trust_2: "職人直接支援",
+                trust_3_title: "厳重梱包",
+                trust_3: "日本全国配送",
+                badge_oneoff: "1点もの工芸",
+                hero_img_caption: "手彫り木工と伝統陶器",
+                story_subtitle: "— 職人の技と心 —",
+                story_title: "自然の恵みと、数百年の受け継がれた意匠",
+                story_desc: "セイロン（スリランカ）の深い緑と太陽のもとで育まれた天然素材。代々受け継がれてきた匠の技で、ひとつひとつ心を込めて手作業で仕立てられています。",
+                feat_1_title: "持続可能な天然素材",
+                feat_1_desc: "高級チーク材、マホガニー、ヤシの木、天然真鍮、手紡ぎコットンなど、環境に配慮して採取された極上の素材のみを使用しています。",
+                feat_2_title: "フェアトレードと共生",
+                feat_2_desc: "スリランカの農村部で活躍する伝統工芸師や女性職人グループと直接提携。適切な対価を支払うことで、伝統の継承と生活向上を支えています。",
+                feat_3_title: "唯一無二の存在感",
+                feat_3_desc: "型押し大量生産にはない、手仕事ならではの温もりと微妙な表情の違い。暮らしの中に一つ置くだけで静かな美しさを添えます。",
+                catalog_subtitle: "— 厳選コレクション —",
+                catalog_title: "手仕事作品カタログ",
+                catalog_total: "全",
+                catalog_items_suffix: "件の伝統工芸品を表示中",
+                cat_all: "すべて表示",
+                cat_wood: "木工芸品 (Wood)",
+                cat_textile: "バティック・テキスタイル",
+                cat_brass: "真鍮・金属細工",
+                cat_pottery: "陶器・セイロン茶器",
+                cat_eco: "エコクラフト",
+                filter_price: "価格帯:",
+                price_all: "すべての価格",
+                price_under: "¥5,000 未満",
+                price_over: "¥15,000 以上",
+                filter_sort: "並び替え:",
+                sort_pop: "人気順",
+                sort_low: "価格の安い順",
+                sort_high: "価格の高い順",
+                sort_new: "新作順",
+                no_products: "条件に一致する作品が見つかりませんでした。",
+                wrap_subtitle: "— 心を伝えるお包み —",
+                wrap_title: "大切な方への贈り物に。<br>風呂敷＆伝統桐箱ラッピング",
+                wrap_desc: "セイロン工芸では、スリランカ手織りバティックを用いた風呂敷包みや、美しい贈答箱ラッピング（有料オプション +¥500）をご用意しております。",
+                wrap_li_1: "スリランカ手織り布によるオリジナル風呂敷包み",
+                wrap_li_2: "手書き風の和紙メッセージカード同封可能",
+                wrap_li_3: "金額の分かる納品書は同梱いたしません",
+                reviews_subtitle: "— お客様の声 —",
+                reviews_title: "ご愛用者様からのメッセージ",
+                rev_1_text: "「象の手彫り木工像を購入しました。リビングに飾っていますが、チーク材の優しい木目と存在感に毎日癒やされています。梱包もとても丁寧でした。」",
+                rev_1_author: "佐藤 様（東京都）",
+                rev_1_item: "購入商品: 象の伝統木彫り像",
+                rev_2_text: "「セイロン茶器のセットを新築祝いとして友人に贈りました。手作業の素朴な味わいと深い青色が本当に素晴らしく、大変喜ばれました。」",
+                rev_2_author: "高橋 様（京都府）",
+                rev_2_item: "購入商品: ハンドメイド陶器ポット",
+                rev_3_text: "「バティック織物のタペストリーを購入。部屋の雰囲気がガラリとアジアンモダンになり気に入っています。質感も手触りも高級感があります。」",
+                rev_3_author: "渡辺 様（神奈川県）",
+                rev_3_item: "購入商品: 手織りバティックタペストリー",
+                verified: "購入者様",
+                news_subtitle: "メルマガご登録",
+                news_title: "10% OFF クーポンをお届け",
+                news_desc: "新作手仕事作品の入荷情報や、職人インタビュー、会員限定優待クーポンを定期的にお届けします。",
+                email_placeholder: "メールアドレスを入力",
+                news_btn: "登録する",
+                footer_bio: "スリランカの伝統技術と日本の生活空間をつなぐ手仕事セレクトショップ。職人の想いとぬくもりを直接お届けします。",
+                footer_shop: "ショップ",
+                footer_support: "サポート",
+                sup_pay: "お支払い方法",
+                sup_ship: "配送・送料について",
+                sup_faq: "よくある質問 (FAQ)",
+                footer_delivery: "配送サポート",
+                footer_delivery_desc: "ヤマト運輸・佐川急便にてお届け。<br>日時指定対応。",
+                privacy: "プライバシーポリシー",
+                terms: "利用規約",
+                mob_home: "ホーム",
+                mob_search: "検索",
+                mob_wish: "お気に入り",
+                mob_cart: "カート",
+                mob_menu: "メニュー",
+                cart_title: "ショッピングカート",
+                subtotal: "小計 (税込):",
+                shipping_fee: "送料 (日本国内):",
+                proceed_checkout: "ご注文手続きへ進む",
+                checkout_title: "ご注文手続き (デモ)",
+                chk_name: "お名前 *",
+                chk_zip: "郵便番号 *",
+                chk_pref: "都道府県 *",
+                chk_address: "住所 *",
+                chk_payment: "お支払い方法 *",
+                pay_card: "クレジット",
+                pay_konbini: "コンビニ",
+                chk_total: "合計金額 (税込):",
+                chk_submit: "注文を確定する (デモ完了)",
+                quickview_btn: "クイックビュー",
+                add_cart: "カートに追加"
+            },
+            en: {
+                page_title: "CeylonCrafts - Authentic Sri Lankan Handicrafts for Japan",
+                announcement: "✨ Free Nationwide Shipping on orders over ¥10,000 | All prices include tax",
+                shipping_courier: "Shipped via Yamato Transport / Sagawa",
+                brand_title: "CeylonCrafts",
+                nav_home: "Home",
+                nav_story: "Artisan Story",
+                nav_catalog: "Catalog",
+                nav_wrapping: "Gift Wrapping",
+                nav_reviews: "Reviews",
+                cart_btn: "Cart",
+                search_placeholder: "Search wood carvings, tea ware, batiks...",
+                clear: "Clear",
+                hero_tag: "Sri Lankan Craftsmanship & Japanese Aesthetic",
+                hero_title: "One-of-a-kind Handcrafted Artistry",
+                hero_title_sub: "from Sri Lanka.",
+                hero_desc: "Traditional handicrafts passed down through generations using sustainable natural materials. Bringing tropical warmth and refined beauty to your home.",
+                hero_cta_explore: "Explore Collection",
+                hero_cta_story: "Artisan Story",
+                trust_1: "100% Handmade",
+                trust_2_title: "Fair Trade",
+                trust_2: "Direct Artisan Support",
+                trust_3_title: "Secure Packing",
+                trust_3: "Nationwide Japan Delivery",
+                badge_oneoff: "One-of-a-kind",
+                hero_img_caption: "Hand-carved Wood & Pottery",
+                story_subtitle: "— Artisan Craft & Heart —",
+                story_title: "Nature's Bounty & Centuries of Heritage",
+                story_desc: "Natural materials nurtured under Sri Lanka's lush green and sun. Crafted meticulously by hand using generational master techniques.",
+                feat_1_title: "Sustainable Natural Materials",
+                feat_1_desc: "Crafted exclusively from premium teak, mahogany, palm leaves, natural brass, and hand-spun cotton.",
+                feat_2_title: "Fair Trade & Harmony",
+                feat_2_desc: "Partnering directly with traditional artisans and women's cooperatives in rural Sri Lanka, ensuring fair compensation.",
+                feat_3_title: "Unique Presence",
+                feat_3_desc: "Unmatched warmth and nuanced expressions unique to authentic handwork, adding quiet elegance to any living space.",
+                catalog_subtitle: "— Curated Collection —",
+                catalog_title: "Handcraft Catalog",
+                catalog_total: "Showing",
+                catalog_items_suffix: "traditional handicraft items",
+                cat_all: "All Items",
+                cat_wood: "Wood Crafts",
+                cat_textile: "Batik & Textiles",
+                cat_brass: "Brass & Metalwork",
+                cat_pottery: "Pottery & Tea Ware",
+                cat_eco: "Eco Crafts",
+                filter_price: "Price:",
+                price_all: "All Prices",
+                price_under: "Under ¥5,000",
+                price_over: "Over ¥15,000",
+                filter_sort: "Sort by:",
+                sort_pop: "Most Popular",
+                sort_low: "Price: Low to High",
+                sort_high: "Price: High to Low",
+                sort_new: "Newest Arrivals",
+                no_products: "No handicrafts match your selected filter.",
+                wrap_subtitle: "— Heartfelt Presentation —",
+                wrap_title: "For Your Special Gifts.<br>Furoshiki & Traditional Box Wrapping",
+                wrap_desc: "We offer traditional hand-woven batik Furoshiki gift wrapping and wooden presentation boxes (Optional +¥500), ideal for celebrations and anniversaries.",
+                wrap_li_1: "Original Furoshiki wrapping with Sri Lankan handwoven cloth",
+                wrap_li_2: "Handwritten Washi paper message card included",
+                wrap_li_3: "Receipt without pricing omitted upon request",
+                reviews_subtitle: "— Customer Voices —",
+                reviews_title: "Messages from Our Patrons",
+                rev_1_text: "\"I purchased the hand-carved wooden elephant statue. Displayed in our living room, the gentle teak wood grain and presence soothe me daily.\"",
+                rev_1_author: "Mr. Sato (Tokyo)",
+                rev_1_item: "Purchased: Elephant Wood Carving",
+                rev_2_text: "\"Gifting the Ceylon tea ware set for a housewarming was a huge success. The rustic handmade texture and deep blue glaze are exquisite.\"",
+                rev_2_author: "Ms. Takahashi (Kyoto)",
+                rev_2_item: "Purchased: Handmade Ceramic Pot",
+                rev_3_text: "\"Bought the batik wall tapestry. It transformed our room into an Asian-modern sanctuary. Excellent quality and texture.\"",
+                rev_3_author: "Ms. Watanabe (Kanagawa)",
+                rev_3_item: "Purchased: Batik Wall Tapestry",
+                verified: "Verified Buyer",
+                news_subtitle: "Newsletter",
+                news_title: "Get 10% OFF Your First Order",
+                news_desc: "Receive new arrival notifications, artisan interviews, and member-only coupons periodically.",
+                email_placeholder: "Enter your email address",
+                news_btn: "Subscribe",
+                footer_bio: "A curated handicraft boutique bridging Sri Lankan traditional art with Japanese living spaces.",
+                footer_shop: "Shop",
+                footer_support: "Support",
+                sup_pay: "Payment Methods",
+                sup_ship: "Shipping & Delivery",
+                sup_faq: "FAQ",
+                footer_delivery: "Delivery Support",
+                footer_delivery_desc: "Yamato Transport & Sagawa Express.<br>Time slot selection available.",
+                privacy: "Privacy Policy",
+                terms: "Terms of Service",
+                mob_home: "Home",
+                mob_search: "Search",
+                mob_wish: "Wishlist",
+                mob_cart: "Cart",
+                mob_menu: "Menu",
+                cart_title: "Shopping Cart",
+                subtotal: "Subtotal (incl. tax):",
+                shipping_fee: "Shipping (Japan):",
+                proceed_checkout: "Proceed to Checkout",
+                checkout_title: "Checkout (Demo)",
+                chk_name: "Full Name *",
+                chk_zip: "Postal Code *",
+                chk_pref: "Prefecture *",
+                chk_address: "Address *",
+                chk_payment: "Payment Method *",
+                pay_card: "Credit Card",
+                pay_konbini: "Konbini",
+                chk_total: "Total Amount (incl. tax):",
+                chk_submit: "Confirm Order (Demo Complete)",
+                quickview_btn: "Quick View",
+                add_cart: "Add to Cart"
+            }
+        };
+
+        let currentLang = 'ja';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            
+            // Update active language button styles in top bar
+            if(lang === 'ja') {
+                document.getElementById('lang-ja-btn').className = "px-2 py-0.5 rounded-full text-[10px] font-bold transition bg-wabi-200 text-wabi-900";
+                document.getElementById('lang-en-btn').className = "px-2 py-0.5 rounded-full text-[10px] font-medium transition text-wabi-300 hover:text-white";
+                document.querySelector('.lang-mob-ja').className = "lang-mob-ja font-bold px-1 text-wabi-900";
+                document.querySelector('.lang-mob-en').className = "lang-mob-en font-medium px-1 text-wabi-600";
+            } else {
+                document.getElementById('lang-en-btn').className = "px-2 py-0.5 rounded-full text-[10px] font-bold transition bg-wabi-200 text-wabi-900";
+                document.getElementById('lang-ja-btn').className = "px-2 py-0.5 rounded-full text-[10px] font-medium transition text-wabi-300 hover:text-white";
+                document.querySelector('.lang-mob-en').className = "lang-mob-en font-bold px-1 text-wabi-900";
+                document.querySelector('.lang-mob-ja').className = "lang-mob-ja font-medium px-1 text-wabi-600";
+            }
+
+            // Translate static DOM elements with data-i18n
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (translations[lang][key]) {
+                    el.innerHTML = translations[lang][key];
+                }
+            });
+
+            // Translate placeholders
+            document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+                const key = el.getAttribute('data-i18n-placeholder');
+                if (translations[lang][key]) {
+                    el.setAttribute('placeholder', translations[lang][key]);
+                }
+            });
+
+            renderProducts();
+            updateCartUI();
+        }
+
+        // Products Data with bilingual titles and descriptions
+        const productsData = [
+            {
+                id: 1,
+                title: { ja: "伝統チーク材 手彫り象の置物 (小)", en: "Hand-Carved Teak Elephant Figurine" },
+                category: "wood",
+                price: 8800,
+                rating: 5,
+                reviewsCount: 14,
+                badge: { ja: "1点もの", en: "One-of-a-kind" },
+                image: "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "スリランカの聖なる象をモチーフに、熟練の木工職人が高級チーク材からひとつひとつ手彫りで制作した一品。",
+                    en: "Masterfully hand-carved from premium teak wood by traditional artisans in Sri Lanka, depicting the sacred elephant."
+                }
+            },
+            {
+                id: 2,
+                title: { ja: "伝統バティック織物 タペストリー (藍染風)", en: "Traditional Batik Wall Tapestry (Indigo)" },
+                category: "textile",
+                price: 12500,
+                rating: 5,
+                reviewsCount: 22,
+                badge: { ja: "人気No.1", en: "Best Seller" },
+                image: "https://images.unsplash.com/photo-1610701596007-11502861dcfa?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "蝋描き技法（バティック）を用いて染め上げられた幾何学模様の壁掛けタペストリー。天然コットン100%使用。",
+                    en: "Geometric wall tapestry dyed using traditional wax-resist batik techniques. 100% natural cotton."
+                }
+            },
+            {
+                id: 3,
+                title: { ja: "真鍮製 伝統オイルランプ", en: "Traditional Brass Oil Lamp" },
+                category: "brass",
+                price: 16800,
+                rating: 4,
+                reviewsCount: 9,
+                badge: { ja: "伝統工芸", en: "Craft" },
+                image: "https://images.unsplash.com/photo-1578749556568-bc2c40e68b61?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "スリランカの祝い事で使われる伝統的な真鍮製ランタン。重厚感のある真鍮を手作業で研磨。",
+                    en: "Traditional brass lantern used in Sri Lankan ceremonies. Hand-polished heavy brass."
+                }
+            },
+            {
+                id: 4,
+                title: { ja: "ハンドメイド セイロン陶器 ティーポット", en: "Handmade Ceylon Ceramic Teapot" },
+                category: "pottery",
+                price: 9400,
+                rating: 5,
+                reviewsCount: 31,
+                badge: { ja: "おすすめ", en: "Recommended" },
+                image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "セイロン紅茶をより美味しく愉しむために作られた職人手作りの陶器ポット。",
+                    en: "Handmade ceramic pot crafted specifically to enhance the enjoyment of Ceylon tea."
+                }
+            },
+            {
+                id: 5,
+                title: { ja: "ヤシの葉 手編み工芸かごバッグ", en: "Palmyra Leaf Handwoven Basket Bag" },
+                category: "eco",
+                price: 4500,
+                rating: 4,
+                reviewsCount: 18,
+                badge: { ja: "エコクラフト", en: "Eco Craft" },
+                image: "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "スリランカ北部の女性職人がヤシの葉を1本ずつ丹念に編み上げた軽量で丈夫なバスケット。",
+                    en: "Lightweight and durable basket meticulously woven from palm leaves by women artisans in northern Sri Lanka."
+                }
+            },
+            {
+                id: 6,
+                title: { ja: "マホガニー材 彫刻コースター 4枚セット", en: "Mahogany Carved Wood Coasters (Set of 4)" },
+                category: "wood",
+                price: 3800,
+                rating: 5,
+                reviewsCount: 11,
+                badge: { ja: "ギフトに人気", en: "Gift Choice" },
+                image: "https://images.unsplash.com/photo-1584308666744-24d5c474f2ae?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "天然マホガニーをベースに、ペイズリー風伝統意匠を精緻に刻印したコースターセット。",
+                    en: "Natural mahogany coasters engraved with traditional paisley motifs. Oil-finish water resistance."
+                }
+            },
+            {
+                id: 7,
+                title: { ja: "手紡ぎオーガニックコットン プレイスマット", en: "Hand-Spun Organic Cotton Placemat (Pair)" },
+                category: "textile",
+                price: 5200,
+                rating: 4,
+                reviewsCount: 8,
+                badge: { ja: "ナチュラル", en: "Natural" },
+                image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "手織り機でゆっくりと織り上げられた素朴で温かい風合いのランチョンマット。",
+                    en: "Slowly woven on handlooms with a warm and rustic texture. Enhances any table setting."
+                }
+            },
+            {
+                id: 8,
+                title: { ja: "真鍮製 孔雀デザインブックエンド", en: "Brass Peacock Design Bookends" },
+                category: "brass",
+                price: 21000,
+                rating: 5,
+                reviewsCount: 7,
+                badge: { ja: "最高級品", en: "Luxury" },
+                image: "https://images.unsplash.com/photo-1534447677768-be436bb09401?auto=format&fit=crop&w=600&q=80",
+                description: {
+                    ja: "スリランカの国鳥であるクジャクをモチーフにした高級感あふれる真鍮ブックエンド。",
+                    en: "Luxurious brass bookends featuring Sri Lanka's national bird, the peacock."
+                }
+            }
+        ];
+
+        let cart = [];
+        let wishlist = [];
+        let activeCategory = 'all';
+        let searchQuery = '';
+        let priceFilter = 'all';
+        let sortOption = 'popular';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts();
+            setupEventListeners();
+            updateCartUI();
+        });
+
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const noMsg = document.getElementById('no-products-msg');
+
+            let filtered = productsData.filter(p => {
+                const matchesCategory = activeCategory === 'all' || p.category === activeCategory;
+                const matchesSearch = p.title[currentLang].toLowerCase().includes(searchQuery.toLowerCase()) || 
+                                      p.description[currentLang].toLowerCase().includes(searchQuery.toLowerCase());
+                let matchesPrice = true;
+                if (priceFilter === 'under5000') matchesPrice = p.price < 5000;
+                else if (priceFilter === '5000to15000') matchesPrice = p.price >= 5000 && p.price <= 15000;
+                else if (priceFilter === 'over15000') matchesPrice = p.price > 15000;
+
+                return matchesCategory && matchesSearch && matchesPrice;
+            });
+
+            if (sortOption === 'price-low') filtered.sort((a, b) => a.price - b.price);
+            else if (sortOption === 'price-high') filtered.sort((a, b) => b.price - a.price);
+            else if (sortOption === 'newest') filtered.sort((a, b) => b.id - a.id);
+
+            document.getElementById('product-count').textContent = filtered.length;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                noMsg.classList.remove('hidden');
+                return;
+            } else {
+                noMsg.classList.add('hidden');
+            }
+
+            grid.innerHTML = filtered.map(product => {
+                const isWishlisted = wishlist.includes(product.id);
+                return `
+                <div class="bg-white rounded-2xl border border-wabi-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col group">
+                    <div class="relative aspect-square overflow-hidden bg-wabi-100">
+                        <img src="${product.image}" alt="${product.title[currentLang]}" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                        
+                        ${product.badge ? `<span class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-wabi-900/90 text-wabi-100 text-[9px] sm:text-[10px] tracking-wider px-2 py-0.5 sm:px-2.5 sm:py-1 rounded-full font-sans">${product.badge[currentLang]}</span>` : ''}
+                        
+                        <button onclick="toggleWishlist(${product.id})" class="absolute top-2 right-2 sm:top-3 sm:right-3 w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-white/90 shadow flex items-center justify-center text-wabi-800 hover:text-terracotta transition">
+                            <i class="${isWishlisted ? 'fa-solid text-terracotta' : 'fa-regular'} fa-heart text-xs sm:text-sm"></i>
+                        </button>
+
+                        <div class="absolute inset-x-0 bottom-0 p-2 sm:p-3 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition duration-300 flex justify-center">
+                            <button onclick="openQuickView(${product.id})" class="bg-white text-wabi-900 text-[10px] sm:text-xs font-bold px-3 py-1.5 sm:px-4 sm:py-2 rounded-full shadow hover:bg-wabi-100 transition tracking-wider">
+                                <i class="fa-regular fa-eye mr-1"></i>${translations[currentLang].quickview_btn}
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="p-3 sm:p-5 flex-1 flex flex-col justify-between space-y-2 sm:space-y-3">
+                        <div>
+                            <div class="flex items-center space-x-0.5 sm:space-x-1 text-amber-500 text-[10px] sm:text-xs mb-1">
+                                ${Array(product.rating).fill('<i class="fa-solid fa-star"></i>').join('')}
+                                <span class="text-wabi-500 text-[9px] sm:text-[10px] ml-1">(${product.reviewsCount})</span>
+                            </div>
+                            <h3 class="font-serif font-bold text-xs sm:text-sm text-wabi-900 group-hover:text-wabi-600 transition line-clamp-2">${product.title[currentLang]}</h3>
+                        </div>
+
+                        <div class="pt-2 border-t border-wabi-100 flex items-center justify-between">
+                            <div>
+                                <span class="text-[9px] sm:text-xs text-wabi-500 block">¥</span>
+                                <span class="text-sm sm:text-base font-bold font-sans text-wabi-900">¥${product.price.toLocaleString()}</span>
+                            </div>
+
+                            <button onclick="addToCart(${product.id})" class="bg-wabi-100 hover:bg-wabi-900 hover:text-white text-wabi-900 p-2 sm:p-2.5 rounded-full transition shadow-sm" title="Add">
+                                <i class="fa-solid fa-plus text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                `;
+            }).join('');
+        }
+
+        function setupEventListeners() {
+            document.querySelectorAll('.category-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.category-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-wabi-900', 'text-white');
+                        b.classList.add('bg-wabi-100', 'text-wabi-800');
+                    });
+                    btn.classList.add('active', 'bg-wabi-900', 'text-white');
+                    btn.classList.remove('bg-wabi-100', 'text-wabi-800');
+
+                    activeCategory = btn.dataset.category;
+                    renderProducts();
+                });
+            });
+
+            document.getElementById('price-filter').addEventListener('change', (e) => {
+                priceFilter = e.target.value;
+                renderProducts();
+            });
+
+            document.getElementById('sort-select').addEventListener('change', (e) => {
+                sortOption = e.target.value;
+                renderProducts();
+            });
+
+            const searchBtn = document.getElementById('search-toggle-btn');
+            const searchPanel = document.getElementById('search-bar-panel');
+            const searchInput = document.getElementById('catalog-search-input');
+            
+            searchBtn.addEventListener('click', () => {
+                searchPanel.classList.toggle('hidden');
+                if(!searchPanel.classList.contains('hidden')) searchInput.focus();
+            });
+
+            searchInput.addEventListener('input', (e) => {
+                searchQuery = e.target.value;
+                renderProducts();
+            });
+
+            document.getElementById('clear-search-btn').addEventListener('click', () => {
+                searchInput.value = '';
+                searchQuery = '';
+                renderProducts();
+            });
+
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.toggle('hidden'));
+
+            document.querySelectorAll('.mobile-menu-link').forEach(link => {
+                link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+            });
+
+            const cartDrawer = document.getElementById('cart-drawer');
+            const cartOverlay = document.getElementById('cart-drawer-overlay');
+            const openCartBtn = document.getElementById('cart-drawer-btn');
+            const closeCartBtn = document.getElementById('close-cart-btn');
+
+            function openCart() {
+                cartDrawer.classList.remove('translate-x-full');
+                cartOverlay.classList.remove('hidden');
+            }
+
+            function closeCart() {
+                cartDrawer.classList.add('translate-x-full');
+                cartOverlay.classList.add('hidden');
+            }
+
+            openCartBtn.addEventListener('click', openCart);
+            closeCartBtn.addEventListener('click', closeCart);
+            cartOverlay.addEventListener('click', closeCart);
+
+            document.getElementById('close-quickview-btn').addEventListener('click', () => {
+                document.getElementById('quickview-modal').classList.add('hidden');
+            });
+
+            document.getElementById('checkout-open-btn').addEventListener('click', () => {
+                if (cart.length === 0) {
+                    alert(currentLang === 'ja' ? 'カートが空です。' : 'Your cart is empty.');
+                    return;
+                }
+                closeCart();
+                document.getElementById('checkout-modal').classList.remove('hidden');
+            });
+
+            document.getElementById('close-checkout-btn').addEventListener('click', () => {
+                document.getElementById('checkout-modal').classList.add('hidden');
+            });
+
+            document.getElementById('checkout-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert(currentLang === 'ja' ? 'ご注文ありがとうございます！デモの注文手続きが完了しました。' : 'Thank you for your order! Demo checkout completed successfully.');
+                cart = [];
+                updateCartUI();
+                document.getElementById('checkout-modal').classList.add('hidden');
+            });
+
+            document.getElementById('newsletter-form').addEventListener('submit', (e) => {
+                e.preventDefault();
+                alert(currentLang === 'ja' ? 'ご登録ありがとうございます！クーポンをお送りしました。' : 'Thank you for subscribing! Coupon sent.');
+                e.target.reset();
+            });
+        }
+
+        function addToCart(productId) {
+            const existing = cart.find(item => item.id === productId);
+            if (existing) {
+                existing.qty += 1;
+            } else {
+                const product = productsData.find(p => p.id === productId);
+                cart.push({ ...product, qty: 1 });
+            }
+            updateCartUI();
+            document.getElementById('cart-drawer').classList.remove('translate-x-full');
+            document.getElementById('cart-drawer-overlay').classList.remove('hidden');
+        }
+
+        function updateCartQty(productId, delta) {
+            const item = cart.find(i => i.id === productId);
+            if (item) {
+                item.qty += delta;
+                if (item.qty <= 0) cart = cart.filter(i => i.id !== productId);
+            }
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
+            document.getElementById('cart-count-badge').textContent = totalQty;
+            document.querySelectorAll('.mobile-cart-count').forEach(el => el.textContent = totalQty);
+
+            const container = document.getElementById('cart-items-container');
+
+            if (cart.length === 0) {
+                container.innerHTML = `
+                <div class="text-center py-12 text-wabi-500 space-y-3">
+                    <i class="fa-solid fa-bag-shopping text-4xl text-wabi-300"></i>
+                    <p class="text-sm font-medium">${currentLang === 'ja' ? 'カートに商品はありません。' : 'Your cart is empty.'}</p>
+                </div>
+                `;
+            } else {
+                container.innerHTML = cart.map(item => `
+                <div class="pt-4 flex space-x-3 items-center">
+                    <img src="${item.image}" alt="${item.title[currentLang]}" class="w-16 h-16 object-cover rounded-xl border border-wabi-200">
+                    <div class="flex-1">
+                        <h4 class="text-xs font-serif font-bold text-wabi-900 line-clamp-1">${item.title[currentLang]}</h4>
+                        <p class="text-xs text-wabi-600 font-sans mt-0.5">¥${item.price.toLocaleString()}</p>
+                        <div class="flex items-center space-x-2 mt-2">
+                            <button onclick="updateCartQty(${item.id}, -1)" class="w-6 h-6 rounded border border-wabi-300 text-xs flex items-center justify-center hover:bg-wabi-100">-</button>
+                            <span class="text-xs font-bold w-4 text-center">${item.qty}</span>
+                            <button onclick="updateCartQty(${item.id}, 1)" class="w-6 h-6 rounded border border-wabi-300 text-xs flex items-center justify-center hover:bg-wabi-100">+</button>
+                        </div>
+                    </div>
+                    <div class="text-right">
+                        <span class="text-xs font-bold text-wabi-900">¥${(item.price * item.qty).toLocaleString()}</span>
+                    </div>
+                </div>
+                `).join('');
+            }
+
+            const subtotal = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            document.getElementById('cart-subtotal').textContent = `¥${subtotal.toLocaleString()}`;
+            document.getElementById('checkout-total-price').textContent = `¥${(subtotal + (subtotal >= 10000 || subtotal === 0 ? 0 : 800)).toLocaleString()}`;
+
+            const freeThreshold = 10000;
+            const progressText = document.getElementById('shipping-progress-text');
+            const progressBar = document.getElementById('shipping-progress-bar');
+            const percentText = document.getElementById('shipping-percent');
+            const shippingFeeText = document.getElementById('cart-shipping-fee');
+
+            if (subtotal >= freeThreshold) {
+                progressText.textContent = currentLang === 'ja' ? '🎉 日本全国送料無料対象です！' : '🎉 Free nationwide shipping unlocked!';
+                progressBar.style.width = '100%';
+                percentText.textContent = '100%';
+                shippingFeeText.textContent = currentLang === 'ja' ? '無料' : 'Free';
+            } else {
+                const diff = freeThreshold - subtotal;
+                const pct = Math.min(100, Math.round((subtotal / freeThreshold) * 100));
+                progressText.textContent = currentLang === 'ja' ? `送料無料まであと ¥${diff.toLocaleString()}` : `Add ¥${diff.toLocaleString()} for free shipping`;
+                progressBar.style.width = `${pct}%`;
+                percentText.textContent = `${pct}%`;
+                shippingFeeText.textContent = '¥800';
+            }
+        }
+
+        function toggleWishlist(productId) {
+            if (wishlist.includes(productId)) {
+                wishlist = wishlist.filter(id => id !== productId);
+            } else {
+                wishlist.push(productId);
+            }
+
+            const badge = document.getElementById('wishlist-badge');
+            if (wishlist.length > 0) {
+                badge.textContent = wishlist.length;
+                badge.classList.remove('hidden');
+            } else {
+                badge.classList.add('hidden');
+            }
+
+            renderProducts();
+        }
+
+        function openQuickView(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const modalContent = document.getElementById('quickview-content');
+            modalContent.innerHTML = `
+                <div class="aspect-square bg-wabi-100">
+                    <img src="${product.image}" alt="${product.title[currentLang]}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-6 sm:p-8 flex flex-col justify-between space-y-4">
+                    <div class="space-y-3">
+                        <span class="bg-wabi-100 text-wabi-800 text-[10px] px-2.5 py-1 rounded-full font-sans uppercase tracking-wider">${product.badge[currentLang]}</span>
+                        <h3 class="text-xl font-serif font-bold text-wabi-900">${product.title[currentLang]}</h3>
+                        <div class="flex items-center space-x-1 text-amber-500 text-xs">
+                            ${Array(product.rating).fill('<i class="fa-solid fa-star"></i>').join('')}
+                            <span class="text-wabi-500 text-xs ml-1">(${product.reviewsCount})</span>
+                        </div>
+                        <p class="text-2xl font-bold font-sans text-wabi-900">¥${product.price.toLocaleString()} <span class="text-xs font-normal text-wabi-500">(tax incl.)</span></p>
+                        <p class="text-xs text-wabi-700 leading-relaxed border-t border-wabi-100 pt-3">${product.description[currentLang]}</p>
+                    </div>
+
+                    <div class="space-y-3 pt-4 border-t border-wabi-100">
+                        <button onclick="addToCart(${product.id}); document.getElementById('quickview-modal').classList.add('hidden');" class="w-full bg-wabi-900 hover:bg-wabi-800 text-white font-bold py-3 rounded-full text-xs transition shadow flex items-center justify-center space-x-2">
+                            <i class="fa-solid fa-bag-shopping"></i>
+                            <span>${translations[currentLang].add_cart}</span>
+                        </button>
+                    </div>
+                </div>
+            `;
+
+            document.getElementById('quickview-modal').classList.remove('hidden');
+        }
+    </script>
+</body>
+</html>
+```
+eof
+
+### Summary of Updates:
+1. **Bilingual Support (Japanese & English):** Defaulted to Japanese (`日本語`) with a seamless language switcher in the header. All text elements, product titles, descriptions, categories, and checkout forms instantly update in real-time when toggled.
+2. **Mobile-First Optimized Product Grid:** On mobile devices, products are precisely arranged in **2 columns per row** (`grid-cols-2`) with compact, elegant padding and typography.
+3. **Fixed Mobile Bottom Navigation Bar:** Added a sleek floating bottom bar on mobile view with quick icons for Home, Search, Wishlist, Cart with live badge counter, and Menu.
